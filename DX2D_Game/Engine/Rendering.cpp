@@ -63,6 +63,34 @@ namespace Rendering
 		Transform::Update<Transform::Type::Latter>(reinterpret_cast<Transform::matrix const &>(latter));
 	}
 
+	namespace Text
+	{
+		void Import(std::string const& file)
+		{ AddFontResourceEx(file.data(), FR_PRIVATE | FR_NOT_ENUM, nullptr); }
+
+		void Component::Draw()
+		{
+			LOGFONT descriptor = LOGFONT();
+
+			descriptor.lfHeight = Font.Size;
+			descriptor.lfWeight = Font.Bold ? FW_BOLD:FW_NORMAL;
+			descriptor.lfItalic= Font.Italic;
+			descriptor.lfUnderline = Font.Underlined;
+			descriptor.lfStrikeOut = Font.StrikeThrough;
+			descriptor.lfCharSet = DEFAULT_CHARSET;
+
+			strcpy_s(descriptor.lfFaceName, LF_FACESIZE, Font.Name);
+
+			HFONT const font = CreateFontIndirect(&descriptor);
+
+			SIZE const area = { static_cast<LONG>(Length[0]), static_cast<LONG>(Length[1]) };
+			POINT const center = { static_cast<LONG>(Location[0]), static_cast<LONG>(Location[1]) };
+		
+			Pipeline::String::Render(font, str, RGB(Color.Red, Color.Green, Color.Blue), area, center);
+
+			DeleteObject(font);
+		}
+	}
 
 	namespace Image
 	{
@@ -206,6 +234,15 @@ namespace Rendering
 			{
 				Pipeline::Procedure(hWindow, uMessage, wParam, lParam);
 
+				static Text::Component text = { 
+					"Hello Wolrd", 
+					{"Cookie", 20, false, false , false , false} , 
+					{1, 1, 1}, 
+					{vector<2>(100.f, 100.f), vector<2>(0.f,0.f)} 
+				};
+
+				text.Draw();
+
 				return;
 			}
 			case WM_SIZE:
@@ -218,6 +255,8 @@ namespace Rendering
 			{
 				Pipeline::Procedure(hWindow, uMessage, wParam, lParam);
 				
+				Resource::Import("Font", Text::Import);
+
 				FreeImage_Initialise();
 				{
 					Resource::Import("Image",         Image::Import);
@@ -229,6 +268,13 @@ namespace Rendering
 			case WM_DESTROY:
 			{
 				Pipeline::Procedure(hWindow, uMessage, wParam, lParam);
+
+				for (auto const& pair : Image::Storage)
+					Pipeline::Texture::Delete(pair.second.Handle);
+				
+				for (auto const& pair : Animation::Storage)
+					Pipeline::Texture::Delete(pair.second.Handle);
+				
 
 				return;
 			}

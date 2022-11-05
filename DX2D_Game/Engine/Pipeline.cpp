@@ -48,7 +48,20 @@ namespace Pipeline
 
 				MUST(surface->GetDC(false, &hDC));
 				{
+					if (hFont != HFONT())
+						SelectObject(hDC, hFont);
 
+					SetTextColor(hDC, color);
+
+					RECT area
+					{
+						center.x - size.cx / 2,
+						center.y - size.cy / 2,
+						center.x + size.cx / 2,
+						center.y + size.cy / 2
+					};
+
+					DrawText(hDC, string, ~'\0', &area, 0);
 				}
 				MUST(surface->ReleaseDC(nullptr));
 			}
