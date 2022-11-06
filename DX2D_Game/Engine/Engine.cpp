@@ -1,3 +1,4 @@
+#include "Game.h"
 #include <d3d11.h>
 
 namespace Rendering { void Procedure(HWND const, UINT const, WPARAM const, LPARAM const); }
@@ -7,6 +8,7 @@ namespace Time      { void Procedure(HWND const, UINT const, WPARAM const, LPARA
 
 namespace Engine
 {
+	namespace { Game* Portfolio; }
 	LRESULT CALLBACK Procedure(HWND const hWindow, UINT const uMessage, WPARAM const wParam, LPARAM const lParam)
 	{
 		switch (uMessage)
@@ -16,6 +18,9 @@ namespace Engine
 			Input::Procedure(hWindow, uMessage, wParam, lParam);
 			Rendering::Procedure(hWindow, uMessage, wParam, lParam);
 			Time::Procedure(hWindow, uMessage, wParam, lParam);
+
+			if (!Portfolio->Update())
+				CloseWindow(hWindow);
 
 			return 0;
 		}
@@ -39,11 +44,14 @@ namespace Engine
 		{
 			Rendering::Procedure(hWindow, uMessage, wParam, lParam);
 			Sound::Procedure(hWindow, uMessage, wParam, lParam);
+			(Portfolio = Initialize())->Start();
 
 			return 0;
 		}
 		case WM_DESTROY :
 		{
+			Portfolio->End();
+			delete Portfolio;
 			Rendering::Procedure(hWindow, uMessage, wParam, lParam);
 			Sound::Procedure(hWindow, uMessage, wParam, lParam);
 

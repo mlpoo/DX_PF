@@ -43,7 +43,6 @@ namespace Rendering
 			}Color;
 
 		public:
-			vector<2> Length = { 0.0f , 0.0f };
 			vector<2> Location = { 0.0f , 0.0f };
 		};
 	}

@@ -83,7 +83,7 @@ namespace Rendering
 
 			HFONT const font = CreateFontIndirect(&descriptor);
 
-			SIZE const area = { static_cast<LONG>(Length[0]), static_cast<LONG>(Length[1]) };
+			SIZE const area = { static_cast<LONG>(Font.Size * (strlen(str)/2)), static_cast<LONG>(Font.Size) };
 			POINT const center = { static_cast<LONG>(Location[0]), static_cast<LONG>(Location[1]) };
 		
 			Pipeline::String::Render(font, str, RGB(Color.Red, Color.Green, Color.Blue), area, center);
@@ -233,7 +233,7 @@ namespace Rendering
 			case WM_APP:
 			{
 				Pipeline::Procedure(hWindow, uMessage, wParam, lParam);
-
+				/*
 				static Text::Component text = { 
 					"Hello Wolrd", 
 					{"Cookie", 20, false, false , false , false} , 
@@ -242,7 +242,7 @@ namespace Rendering
 				};
 
 				text.Draw();
-
+				*/
 				return;
 			}
 			case WM_SIZE:

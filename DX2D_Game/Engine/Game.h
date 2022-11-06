@@ -6,7 +6,7 @@ namespace Engine
 	{
 	public :
 		virtual void Start() abstract;
-		virtual void Update() abstract;
+		virtual bool Update() abstract;
 		virtual void End() abstract;
 	};
 
