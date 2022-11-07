@@ -126,7 +126,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir).lib\</AdditionalLibraryDirectories>
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
@@ -158,14 +158,19 @@
     <ClInclude Include="Engine\Sound.h" />
     <ClInclude Include="Engine\Time.h" />
     <ClInclude Include="Engine\vector.h" />
+    <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Manager\Game.h" />
+    <ClInclude Include="Manager\Scene.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Scene\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Manager\Game.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Scene\TestScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

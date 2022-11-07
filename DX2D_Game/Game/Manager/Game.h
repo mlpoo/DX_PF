@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Game.h"
+#include "Scene.h"
 
 class Game : public Engine::Game
 {
@@ -8,5 +9,8 @@ public:
 	bool Update() override;
 	void End() override;
 
+	std::vector<Scene*> Scenes;
+
+	Scene* Now;
 };
 

@@ -15,12 +15,12 @@ namespace Engine
 		{
 		case WM_APP :
 		{
+			if (!Portfolio->Update())
+				CloseWindow(hWindow);
+
 			Input::Procedure(hWindow, uMessage, wParam, lParam);
 			Rendering::Procedure(hWindow, uMessage, wParam, lParam);
 			Time::Procedure(hWindow, uMessage, wParam, lParam);
-
-			if (!Portfolio->Update())
-				CloseWindow(hWindow);
 
 			return 0;
 		}
