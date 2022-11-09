@@ -8,9 +8,5 @@ public:
 	void Start() override;
 	bool Update() override;
 	void End() override;
-
-	std::vector<Scene*> Scenes;
-
-	Scene* Now;
 };
 

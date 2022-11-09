@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Engine\Collision.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\Input.h" />
@@ -158,6 +159,8 @@
     <ClInclude Include="Engine\Sound.h" />
     <ClInclude Include="Engine\Time.h" />
     <ClInclude Include="Engine\vector.h" />
+    <ClInclude Include="Manager\Singleton.h" />
+    <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Manager\Game.h" />
     <ClInclude Include="Manager\Scene.h" />
@@ -165,6 +168,7 @@
     <ClInclude Include="Scene\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Manager\Game.cpp" />
     <ClCompile Include="stdafx.cpp">

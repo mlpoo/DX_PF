@@ -1,32 +1,22 @@
 #include "stdafx.h"
 #include "Game.h"
-#include "Scene/GameScene.h"
-#include "Scene/TestScene.h"
+#include "SceneManager.h"
 
 
 void Game::Start()
 {
-	Scenes.push_back(new GameScene);
-	Scenes.push_back(new TestScene);
-
-	Now = Scenes.front();
-	Now->Start();
+	GetSceneManager;
 }
+	
 bool Game::Update()
 {
-	if (Now->Update())
-		return true;
-	else
-	{
-		Now = Scenes.at(1);
-		Now->Start();
+	if (GetSceneManager->GetNowScene()->Update()) return true;
 
-	}
 	return true;
 }
 void Game::End()
 {
-	
+	GetSceneManager->DeleteInstance();
 }
 
 Engine::Game* Engine::Initialize()

@@ -7,7 +7,8 @@ void TestScene::Start()
 
 bool TestScene::Update()
 {
-	if (Input::Get::Key::Down(VK_LEFT)) return false;
+	if (Input::Get::Key::Down(VK_LEFT)) GetSceneManager->ChangeScene("GameScene");
+
 
 	return true;
 }
