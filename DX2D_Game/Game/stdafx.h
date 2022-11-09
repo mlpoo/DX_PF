@@ -1,4 +1,6 @@
 #pragma once
+#define DEBUG
+
 #include <windows.h>
 
 #include <vector>

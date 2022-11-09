@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
+    <ClInclude Include="Actor\Bullet.h" />
     <ClInclude Include="Engine\Collision.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\Input.h" />
@@ -166,8 +167,11 @@
     <ClInclude Include="Manager\Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Scene\TestScene.h" />
+    <ClInclude Include="Util\IObjectPoolable.h" />
+    <ClInclude Include="Util\ObjectPool.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\Bullet.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Manager\Game.cpp" />

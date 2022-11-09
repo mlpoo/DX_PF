@@ -1,23 +1,25 @@
 #include "stdafx.h"
 #include "GameScene.h"
+#include "Util/ObjectPool.h"
+#include "Actor/Bullet.h"
 
 void GameScene::Start()
 {
-	Img.Content = "Free";
-	Img.Length = { 1280 , 720 };
+	Img.Content = "Map";
+	Img.Length = { 1280 *5, 1040 *5};
 
 	Anim.Content = "Walk_R";
 	Anim.Length = { 32 * 3, 28 * 3 };
 	Anim.Duration = 1.0f;
 	Anim.Repeatable = true;
 
-	BGM.Content = "BGM";
+	BGM.Content = "spring_day";
 	BGM.Volume = 1.0f;
 	BGM.Loop = true;
 
-
+	BulletPooling = new ObjectPool<Bullet>();
 } 
-bool GameScene::Update()
+bool GameScene::Update() 
 {
 	Camera.Set();
 	Img.Draw();
@@ -41,6 +43,17 @@ bool GameScene::Update()
 		Camera.Location += normalize(direction) * 500 * Time::Get::Delta();
 		Anim.Location += normalize(direction) * 500 *  Time::Get::Delta();
 	}
+
+	if (Input::Get::Key::Down(VK_SPACE))
+	{
+		Bullet* bullet = BulletPooling->GetRecycledObject();
+
+		bullet->Shoot(Anim.Location, direction);
+
+		BulletPooling->Print();
+	}
+
+	BulletPooling->Update();
 
 	Anim.Draw();
 

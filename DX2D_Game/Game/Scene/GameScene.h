@@ -1,5 +1,6 @@
 #pragma once
 #include "Manager/Scene.h"
+
 class GameScene : public Scene
 {
 public:
@@ -13,5 +14,6 @@ private:
 	Rendering::Animation::Component Anim;
 	Sound::Sound BGM;
 
+	class ObjectPool<class Bullet>* BulletPooling;
 };
 
