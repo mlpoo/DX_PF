@@ -1,11 +1,13 @@
 #pragma once
-#define DEBUG
 
 #include <windows.h>
 
+#ifdef _DEBUG
+#include <iostream>
+#endif
+
 #include <vector>
 #include <map>
-#include <string>
 
 #include "Engine/Collision.h"
 #include "Engine/Input.h"

@@ -1,5 +1,6 @@
 #include <d3d11.h>
 #include <assert.h>
+#include <iostream>
 
 #include "Pipeline.h"
 
@@ -62,6 +63,7 @@ namespace Pipeline
 					};
 
 					DrawText(hDC, string, ~'\0', &area, 0);
+
 				}
 				MUST(surface->ReleaseDC(nullptr));
 			}
@@ -254,6 +256,16 @@ namespace Pipeline
 
 						vertexShader->Release();
 					}
+				}
+				{
+					ID3D11RasterizerState* RSState;
+					D3D11_RASTERIZER_DESC descriptor = D3D11_RASTERIZER_DESC();
+					descriptor.FillMode = D3D11_FILL_SOLID;
+					descriptor.CullMode = D3D11_CULL_NONE;
+
+					MUST(Device->CreateRasterizerState(&descriptor, &RSState));
+					DeviceContext->RSSetState(RSState);
+					RSState->Release();
 				}
 				{
 #include "Shader/Bytecode/Pixel.h"

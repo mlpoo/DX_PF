@@ -28,18 +28,39 @@ namespace Rendering
 				0        , 0        , 0, 1
 			};
 		}
-		inline matrix<4, 4> Rotation(float angle)
+		inline matrix<4, 4> Rotation(vector<3> angle)
 		{
-			float const radian = static_cast<float>(M_PI) / 180.0f * angle;
+			float const radianX = static_cast<float>(M_PI) / 180.0f * angle[0];
+			float const radianY = static_cast<float>(M_PI) / 180.0f * angle[1];
+			float const radianZ = static_cast<float>(M_PI) / 180.0f * angle[2];
 
-			return matrix<4, 4>
+			matrix<4, 4> const rotX =
 			{
-				cos(radian), -sin(radian), 0, 0,
-				sin(radian),  cos(radian), 0, 0,
-				0          , 0           , 1, 0,
-				0          , 0           , 0, 1
+				1 , 0           , 0            , 0,
+				0 , cos(radianX), -sin(radianX), 0,
+				0 , sin(radianX),  cos(radianX), 0,
+				0 , 0           , 0            , 1
 			};
+
+			matrix<4, 4> const rotY =
+			{
+				 cos(radianY), 0, sin(radianY), 0,
+				0            , 1, 0           , 0,
+				-sin(radianY), 0, cos(radianY), 0,
+				0            , 0, 0           , 1
+			};
+
+			matrix<4, 4> const rotZ = 
+			{
+				cos(radianZ), -sin(radianZ), 0, 0,
+				sin(radianZ),  cos(radianZ), 0, 0,
+				0          , 0             , 1, 0,
+				0          , 0             , 0, 1
+			};
+
+			return rotZ* rotX* rotY;
 		}
+
 		inline matrix<4, 4> Translation(vector<2> location)
 		{
 			return matrix<4, 4>
@@ -65,27 +86,27 @@ namespace Rendering
 
 	namespace Text
 	{
-		void Import(std::string const& file)
+		void Import(std::string const & file)
 		{ AddFontResourceEx(file.data(), FR_PRIVATE | FR_NOT_ENUM, nullptr); }
 
 		void Component::Draw()
 		{
 			LOGFONT descriptor = LOGFONT();
 
-			descriptor.lfHeight = Font.Size;
-			descriptor.lfWeight = Font.Bold ? FW_BOLD:FW_NORMAL;
-			descriptor.lfItalic= Font.Italic;
+			descriptor.lfHeight    = Font.Size;
+			descriptor.lfWeight    = Font.Bold ? FW_BOLD : FW_NORMAL;
+			descriptor.lfItalic    = Font.Italic;
 			descriptor.lfUnderline = Font.Underlined;
 			descriptor.lfStrikeOut = Font.StrikeThrough;
-			descriptor.lfCharSet = DEFAULT_CHARSET;
+			descriptor.lfCharSet   = DEFAULT_CHARSET;
 
 			strcpy_s(descriptor.lfFaceName, LF_FACESIZE, Font.Name);
 
 			HFONT const font = CreateFontIndirect(&descriptor);
 
-			SIZE const area = { static_cast<LONG>(Font.Size * (strlen(str)/2)), static_cast<LONG>(Font.Size) };
+			SIZE  const area   = { static_cast<LONG>( Font.Size * (strlen(str) / 2)), static_cast<LONG>(Font.Size) };
 			POINT const center = { static_cast<LONG>(Location[0]), static_cast<LONG>(Location[1]) };
-		
+
 			Pipeline::String::Render(font, str, RGB(Color.Red, Color.Green, Color.Blue), area, center);
 
 			DeleteObject(font);
@@ -217,8 +238,12 @@ namespace Rendering
 
 				if (Duration <= Playback)
 				{
-					if (Repeatable) Playback  = fmod(Playback, Duration);
-					else            Playback -= delta;
+					if (Loop) Playback  = fmod(Playback, Duration);
+					else
+					{
+						Playback -= delta;
+						End = true;
+					}
 				}
 			}
 		}
@@ -233,16 +258,7 @@ namespace Rendering
 			case WM_APP:
 			{
 				Pipeline::Procedure(hWindow, uMessage, wParam, lParam);
-				/*
-				static Text::Component text = { 
-					"Hello Wolrd", 
-					{"Cookie", 20, false, false , false , false} , 
-					{1, 1, 1}, 
-					{vector<2>(100.f, 100.f), vector<2>(0.f,0.f)} 
-				};
 
-				text.Draw();
-				*/
 				return;
 			}
 			case WM_SIZE:
@@ -269,12 +285,11 @@ namespace Rendering
 			{
 				Pipeline::Procedure(hWindow, uMessage, wParam, lParam);
 
-				for (auto const& pair : Image::Storage)
-					Pipeline::Texture::Delete(pair.second.Handle);
-				
-				for (auto const& pair : Animation::Storage)
-					Pipeline::Texture::Delete(pair.second.Handle);
-				
+				for (auto const & pair : Image::Storage)
+					Pipeline::Texture::Delete(pair.second.Handle); 
+
+				for (auto const & pair : Animation::Storage)
+					Pipeline::Texture::Delete(pair.second.Handle); 
 
 				return;
 			}

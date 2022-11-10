@@ -1,4 +1,5 @@
 #pragma once
+
 template <typename T>
 class Singleton
 {
@@ -9,13 +10,8 @@ public:
 		return Instance;
 	}
 
-	void DeleteInstance()
+	static void DeleteSingleton()
 	{
 		delete GetInstance();
 	}
-};
-
-class Player : public Singleton<Player>
-{
-
 };

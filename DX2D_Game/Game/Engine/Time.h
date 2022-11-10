@@ -2,10 +2,10 @@
 
 namespace Time
 {
-	namespace Get
-	{
-		[[nodiscard]] float Elapsed();
-		[[nodiscard]] float   Delta();
-	}
+    namespace Get
+    {
+        [[nodiscard]] float Elpased();
+        [[nodiscard]] float   Delta();
+    }
 };
 

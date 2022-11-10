@@ -48,10 +48,10 @@
     <ClInclude Include="Manager\Scene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\TestScene.h">
+    <ClInclude Include="Scene\Scene2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\GameScene.h">
+    <ClInclude Include="Scene\Scene1.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Singleton.h">
@@ -66,7 +66,7 @@
     <ClInclude Include="Util\IObjectPoolable.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\Bullet.h">
+    <ClInclude Include="Actor\PoolableActor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Util\ObjectPool.h">
@@ -80,16 +80,13 @@
     <ClCompile Include="Manager\Game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\TestScene.cpp">
+    <ClCompile Include="Scene\Scene2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\GameScene.cpp">
+    <ClCompile Include="Scene\Scene1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Manager\SceneManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor\Bullet.cpp">
+    <ClCompile Include="Actor\PoolableActor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

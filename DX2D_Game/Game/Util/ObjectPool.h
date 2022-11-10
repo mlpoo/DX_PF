@@ -1,5 +1,6 @@
 #pragma once
 #include "IObjectPoolable.h"
+#include <iostream>
 #include <vector>
 
 #define DEBUG
@@ -23,21 +24,20 @@ public:
 
 		for (auto elem : PoolObjects)
 		{
-			if (elem->CanRecylcable)
+			if (elem->GetRecycle())
 			{
 				poolObj = elem;
-				break;
+
+				poolObj->OnRecycle();
+
+				return poolObj;
 			}
 		}
 
 		if (poolObj == nullptr)
 		{
 			PoolObjects.push_back(poolObj = new T);
-			return poolObj;
 		}
-
-		poolObj->OnRecycle();
-
 		return poolObj;
 	}
 
@@ -45,15 +45,8 @@ public:
 	{
 		for (auto elem : PoolObjects)
 		{
-			if (!elem->CanRecylcable) elem->Update();
+			if (!elem->GetRecycle()) elem->Update();
 			
 		}
 	}
-
-#ifdef DEBUG
-	void Print() const
-	{
-		std::cout << PoolObjects.size << std::endl;
-	}
-#endif
 };

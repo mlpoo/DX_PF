@@ -12,11 +12,11 @@ bool Game::Update()
 {
 	if (GetSceneManager->GetNowScene()->Update()) return true;
 
-	return true;
+	return false;
 }
 void Game::End()
 {
-	GetSceneManager->DeleteInstance();
+	GetSceneManager->DeleteSingleton();
 }
 
 Engine::Game* Engine::Initialize()

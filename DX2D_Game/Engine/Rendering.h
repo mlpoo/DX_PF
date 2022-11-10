@@ -18,31 +18,31 @@ namespace Rendering
 	{
 		class Component final
 		{
-		public:
+		public :
 			void Draw();
 
-		public:
-			char const* str = nullptr;
-
-			struct 
+		public :
+			char const * str = nullptr;
+			
+			struct
 			{
-				char const* Name = nullptr;
-				unsigned Size = 0;
-				bool Bold = false;
-				bool Italic = false;
-				bool Underlined = false;
+				char const * Name  = nullptr;
+				unsigned Size      = 0;
+				bool Bold          = false;
+				bool Italic        = false;
+				bool Underlined    = false;
 				bool StrikeThrough = false;
-			}Font;
+			}
+			Font;
 
 			struct
 			{
-				unsigned char Red = 0;
+				unsigned char Red   = 0;
 				unsigned char Green = 0;
-				unsigned char Blue = 0;
-
+				unsigned char Blue  = 0;
 			}Color;
 
-		public:
+		public :
 			vector<2> Location = { 0.0f , 0.0f };
 		};
 	}
@@ -59,7 +59,7 @@ namespace Rendering
 
 		public:
 			vector<2> Length   = { 0 , 0 };
-			float     Angle    = { 0 };
+			vector<3> Angle    = { 0 , 0 , 0 };
 			vector<2> Location = { 0 , 0 };
 		};
 	}
@@ -76,11 +76,12 @@ namespace Rendering
 
 			float Playback   = 0;
 			float Duration   = 0;
-			bool  Repeatable = false;
+			bool  Loop       = false;
+			bool  End        = false;
 
 		public:
 			vector<2> Length   = { 0 , 0 };
-			float     Angle    = { 0 };
+			vector<3> Angle    = { 0 , 0 , 0 };
 			vector<2> Location = { 0 , 0 };
 		};
 	}
