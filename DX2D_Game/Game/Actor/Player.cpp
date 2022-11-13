@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Actor/PoolableActor.h"
+#include "Component/InputComponent.h"
+#include "AnimClass/PlayerAnim.h"
 
 APlayer::APlayer()
 {
@@ -8,9 +10,21 @@ APlayer::APlayer()
 	Angle 	 = { 0, 0, 0 };
 	Location = { 0, 0 };
 
-	MoveAnim = { "Walk_R", 0, 1, true, false , Length, Angle, Location };
 
 	ActorPooling = new ObjectPool<PoolableActor>();
+
+	InputComponent = new CInputComponent(this);
+
+	Anim = new PlayerAnim(this, &Location, &Length, &Angle);
+
+	InputComponent->BindAction(VK_SPACE, ActionType::PRESSED, &APlayer::OnShoot);
+
+	AxisData data1[2] = { {'W', 1, &APlayer::MoveForward}, {'S', -1, &APlayer::MoveForward} };
+	AxisData data2[2] = { {'D', 1, &APlayer::MoveRight}, {'A', -1, &APlayer::MoveRight} };
+
+	InputComponent->BindAxis(data1, 2);
+	InputComponent->BindAxis(data2, 2);
+
 }
 
 APlayer::~APlayer()
@@ -29,54 +43,40 @@ void APlayer::Update()
 {
 	Camera.Set();
 
-	vector<2> direction;
+	Direction = { 0, 0 };
+	InputComponent->Update();
 
 
-	if (Input::Get::Key::Press('A'))
+	if (length(Direction) != 0)
 	{
-		direction[0] -= 1;
-		// if (MoveAnim.Angle[1] == 0.f) MoveAnim.Angle[1] -= 180.0f;
-
+		Location += normalize(Direction) * 500 * Time::Get::Delta();
+		Camera.Location   += normalize(Direction) * 500 * Time::Get::Delta();
 	}
 
-	if (Input::Get::Key::Press('D'))
-	{
-		direction[0] += 1;
-		// if (MoveAnim.Angle[1] == -180.0f) MoveAnim.Angle[0] += 180.0f;
-
-	}
-
-	if (Input::Get::Key::Press('W'))
-	{
-		direction[1] += 1;
-		// if (MoveAnim.Angle[0] == -180.0f) MoveAnim.Angle[0] += 180.0f;
-	}
-
-	if (Input::Get::Key::Press('S'))
-	{
-		direction[1] -= 1;
-		// if (MoveAnim.Angle[0] == 0.0f) MoveAnim.Angle[0] -= 180.0f;
-
-	}
-
-	if (length(direction) != 0)
-	{
-		MoveAnim.Location += normalize(direction) * 500 * Time::Get::Delta();
-		Camera.Location += normalize(direction) * 500 * Time::Get::Delta();
-	}
-
-	MoveAnim.Length[0] += Input::Get::Wheel::V();
-	MoveAnim.Length[1] += Input::Get::Wheel::V();
-
-	if (Input::Get::Key::Down(VK_SPACE))
-	{
-		ActorPooling->GetRecycledObject()->Shoot(MoveAnim.Location, direction);
-	}
+	Length[0] += Input::Get::Wheel::V();
+	Length[1] += Input::Get::Wheel::V();
 
 	ActorPooling->Update();
-	MoveAnim.Draw();
+	Anim->Update();
 }
 
 void APlayer::End()
 {
+}
+
+void APlayer::OnShoot()
+{
+	ActorPooling->GetRecycledObject()->Shoot(Location, Direction);
+}
+
+void APlayer::MoveForward(float axis)
+{
+	Direction[1] += axis;
+}
+
+void APlayer::MoveRight(float axis)
+{
+	Direction[0] += axis;
+	if (axis > 0.0f) Angle[1] = 0.0f;
+	else             Angle[1] = 180.0f;
 }

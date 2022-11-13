@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Actor\PoolableActor.h" />
+    <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Engine\Collision.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\Input.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Manager\Singleton.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Actor\Player.h" />
+    <ClInclude Include="AnimClass\PlayerAnim.h" />
     <ClInclude Include="Scene\Scene1.h" />
     <ClInclude Include="Manager\Game.h" />
     <ClInclude Include="Manager\Scene.h" />
@@ -174,6 +176,8 @@
   <ItemGroup>
     <ClCompile Include="Actor\PoolableActor.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
+    <ClCompile Include="Component\InputComponent.cpp" />
+    <ClCompile Include="AnimClass\PlayerAnim.cpp" />
     <ClCompile Include="Scene\Scene1.cpp" />
     <ClCompile Include="Manager\Game.cpp" />
     <ClCompile Include="stdafx.cpp">
