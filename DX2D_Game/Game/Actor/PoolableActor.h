@@ -18,7 +18,7 @@ public:
 
 public:
 	virtual void Start() override;
-	virtual bool Update() override;
+	virtual void Update() override;
 	virtual void End() override;
 
 public:

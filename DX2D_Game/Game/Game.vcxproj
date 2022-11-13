@@ -162,6 +162,7 @@
     <ClInclude Include="Engine\vector.h" />
     <ClInclude Include="Manager\Singleton.h" />
     <ClInclude Include="Manager\SceneManager.h" />
+    <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Scene\Scene1.h" />
     <ClInclude Include="Manager\Game.h" />
     <ClInclude Include="Manager\Scene.h" />
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor\PoolableActor.cpp" />
+    <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Scene\Scene1.cpp" />
     <ClCompile Include="Manager\Game.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -21,7 +21,7 @@ void PoolableActor::Start()
 {
 }
 
-bool PoolableActor::Update()
+void PoolableActor::Update()
 
 {
     if (!BombAnim(Already).End)
@@ -41,7 +41,6 @@ bool PoolableActor::Update()
 
         Recyclable = true;
     }
-	return true;
 }
 
 void PoolableActor::End()

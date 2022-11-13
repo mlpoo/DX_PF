@@ -1,6 +1,6 @@
 #pragma once
 #include "Manager/Scene.h"
-#include "Util/ObjectPool.h"
+#include "Actor/Player.h"
 
 class Scene1 : public Scene
 {
@@ -10,11 +10,10 @@ public:
 	virtual void End()    override;
 
 private:
-	Rendering::Camera				Camera;
+
+	APlayer* Player;
 
 	Sound::Sound					   BGM;
-
-	Rendering::Animation::Component Player;
 
 	Rendering::Text::Component		  Text;
 
@@ -23,6 +22,5 @@ private:
 	Rendering::Image::Component   Building;
 
 
-	ObjectPool<class PoolableActor>* ActorPooling;
 };
 
