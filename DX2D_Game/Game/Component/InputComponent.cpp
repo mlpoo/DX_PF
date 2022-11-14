@@ -13,6 +13,8 @@ void CInputComponent::Update()
     {
         if (Input::Get::Key::Press(elem.Key))
             (Owner->*(elem.Func))(elem.Axis);
+        if (Input::Get::Key::Up(elem.Key))
+            (Owner->*(elem.Func))(0);
     }
 
     for (std::pair<UINT, void(APlayer::*)()> elem : PressedList)

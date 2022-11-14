@@ -4,33 +4,46 @@
 
 class APlayer final : public Actor
 {
+public :
+    APlayer();
+    ~APlayer();
+
+public :
+    virtual void Start()  override;
+    virtual void Update() override;
+    virtual void End()    override;
+
+private :
+    void MoveForward(float axis);
+    void MoveRight(float axis);
+
+    void Fishing_Prepare();
+    void Fishing_Wolk();
+
+    void Farming_Prepare();
+    void Farming_Wolk();
 public:
-	APlayer();
-	~APlayer();
+    bool bWalked;
+    bool bMove;
 
-public:
-	virtual void Start()  override;
-	virtual void Update() override;
-	virtual void End()    override;
+private :
+    class CInputComponent* InputComponent;
 
-private:
-	void OnShoot();
+public :
+    vector<2> Direction;
+    vector<2> MotionDirection;
 
-	void MoveForward(float axis);
-	void MoveRight(float axis);
 
-private:
-	class CInputComponent* InputComponent;
-	class PlayerAnim* Anim;
+    Rendering::Animation::Component Anim;
+    Rendering::Animation::Component Move;
 
-private:
-	vector<2> Location;
-	vector<2> Length;
-	vector<3> Angle;
-	vector<2> Direction;
+private :
+    Rendering::Camera                Camera;
 
-private:
-	Rendering::Camera                Camera;
-	ObjectPool<class PoolableActor>* ActorPooling;
+    void Swap(Rendering::Animation::Component anim);
+
+private :
+    __forceinline void Walk();
+    __forceinline void Run();
 };
 

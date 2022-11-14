@@ -1,25 +1,20 @@
 #include "stdafx.h"
 #include "Game.h"
-#include "SceneManager.h"
-
 
 void Game::Start()
 {
-	GetSceneManager;
+    GetSceneManager;
 }
-	
+
 bool Game::Update()
 {
-	if (GetSceneManager->GetNowScene()->Update()) return true;
+    if (GetSceneManager->GetNowScene()->Update()) return true;
 
-	return false;
+    return false;
 }
+
 void Game::End()
-{
-	GetSceneManager->DeleteSingleton();
-}
+{ GetSceneManager->DeleteSingleton(); }
 
 Engine::Game* Engine::Initialize()
-{
-	return new ::Game();
-}
+{ return new ::Game(); }

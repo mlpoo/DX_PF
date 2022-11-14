@@ -11,36 +11,34 @@
 
 class SceneManager final : public Singleton<SceneManager>
 {
-private:
-	std::map<std::string, class Scene*> Scenes;
+private :
+    std::map<std::string, class Scene*> Scenes;
 
-	std::string Now = "";
-
-public:
-	SceneManager()
-	{
-		Scenes.try_emplace("Scene1", new Scene1);
-		Scenes.try_emplace("Scene2", new Scene2);
-
-		Now = "Scene1";
-		Scenes.at(Now)->Start();
-	}
-	virtual ~SceneManager()
-	{ for (auto scene : Scenes) delete scene.second; }
-
+    std::string Now = "";
 
 public:
-	void ChangeScene(std::string SceneName)
-	{
-		Scenes.at(Now)->End();
-		Scenes.at(SceneName)->Start();
-		Now = SceneName;
-	}
+    SceneManager()
+    {
+        Scenes.try_emplace("Scene1", new Scene1);
+        Scenes.try_emplace("Scene2", new Scene2);
+
+        Now = "Scene1";
+        Scenes.at(Now)->Start();
+    }
+    virtual ~SceneManager()
+    { for (auto scene : Scenes) delete scene.second; }
 
 public:
-	__forceinline Scene* GetNowScene() const
-	{
-		return Scenes.at(Now);
-	}
+    void ChangeScene(std::string SceneName)
+    {
+        Scenes.at(Now)->End();
+        Scenes.at(SceneName)->Start();
+        Now = SceneName;
+    }
+
+public:
+    __forceinline Scene* GetNowScene() const
+    {
+        return Scenes.at(Now);
+    }
 };
-

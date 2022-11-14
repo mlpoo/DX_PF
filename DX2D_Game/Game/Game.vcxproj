@@ -121,7 +121,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <TreatWarningAsError>true</TreatWarningAsError>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -165,6 +165,7 @@
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="AnimClass\PlayerAnim.h" />
+    <ClInclude Include="Manager\WorldManager.h" />
     <ClInclude Include="Scene\Scene1.h" />
     <ClInclude Include="Manager\Game.h" />
     <ClInclude Include="Manager\Scene.h" />
@@ -174,10 +175,10 @@
     <ClInclude Include="Util\ObjectPool.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Actor\PoolableActor.cpp" />
+    <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Component\InputComponent.cpp" />
-    <ClCompile Include="AnimClass\PlayerAnim.cpp" />
+    <ClCompile Include="Manager\WorldManager.cpp" />
     <ClCompile Include="Scene\Scene1.cpp" />
     <ClCompile Include="Manager\Game.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -1,6 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(77,5): warning : 'c:\users\user\desktop\dx_pf\dx2d_game\engine\shader\bytecode\pixel.h' 경로에 대한 액세스가 거부되었습니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(77,5): warning : 'c:\users\user\desktop\dx_pf\dx2d_game\engine\shader\bytecode\vertex.h' 경로에 대한 액세스가 거부되었습니다.
-  failed writing C:\Users\user\Desktop\DX_PF\DX2D_Game\Engine\Shader\Bytecode\Pixel.h
+﻿  failed writing C:\Users\user\Desktop\DX_PF\DX2D_Game\Engine\Shader\Bytecode\Pixel.h
   compilation object save succeeded; see C:\Users\user\Desktop\DX_PF\DX2D_Game\.lib\Pixel.cso
   failed writing C:\Users\user\Desktop\DX_PF\DX2D_Game\Engine\Shader\Bytecode\Vertex.h
   compilation object save succeeded; see C:\Users\user\Desktop\DX_PF\DX2D_Game\.lib\Vertex.cso

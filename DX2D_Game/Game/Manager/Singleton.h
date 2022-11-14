@@ -1,17 +1,15 @@
 #pragma once
 
-template <typename T>
+template<typename T>
 class Singleton
 {
-public:
-	static T* GetInstance()
-	{
-		static T * Instance = new T;
-		return Instance;
-	}
+public :
+    static T* GetInstance()
+    {
+        static T* instance = new T;
+        return instance;
+    }
 
-	static void DeleteSingleton()
-	{
-		delete GetInstance();
-	}
+    static void DeleteSingleton()
+    { delete GetInstance(); }
 };
