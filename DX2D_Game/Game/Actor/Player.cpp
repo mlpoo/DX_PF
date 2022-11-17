@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Component/InputComponent.h"
+#include "Scene/Scene1.h"
+
+
+
 
 APlayer::APlayer()
 {
@@ -15,6 +19,10 @@ APlayer::APlayer()
     Collision.Location = { Move.Location[0], Move.Location[1] - 50 };
 
     InputComponent = new CInputComponent(this);
+   
+    
+    
+    
 
     bWalked = false;
     bMove = true;
@@ -34,8 +42,6 @@ APlayer::APlayer()
     InputComponent->BindAction(VK_RBUTTON, ActionType::PRESSED, &APlayer::Farming_Prepare);
     InputComponent->BindAction(VK_RBUTTON, ActionType::RELEASE, &APlayer::Farming_Wolk);
 
-
-
     Anim = Move;
 }
 
@@ -47,6 +53,14 @@ void APlayer::Start()
 {
     Camera.Location = Anim.Location;
     Camera.Angle    = Anim.Angle[2];
+
+    int i = 0;
+    for (Collision::RectAngle const& elem : Collisions)
+    {
+        printf("Collision[%i] = { { %.1f, %.1f } ,  { %.1f, %.1f} }; \n",
+            i, elem.Length[0], elem.Length[1], elem.Location[0], elem.Location[1]);
+        ++i;
+    }
 }
 
 void APlayer::Update()
@@ -57,6 +71,14 @@ void APlayer::Update()
 
     if (length(Direction) != 0)
     {
+        for (Collision::RectAngle const& elem : Collisions)
+        {
+            // if (Player->Collision.Location == Collisions->Location)
+            if (!Collide(Collision, elem))
+                break;
+        }
+        
+
         if(!bWalked)
         {
             Anim.Location += normalize(Direction) * 500 * Time::Get::Delta();

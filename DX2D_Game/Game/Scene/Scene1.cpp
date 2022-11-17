@@ -1,12 +1,17 @@
 #include "stdafx.h"
 #include "Scene1.h"
+#include "Engine/Collision.h"
 
 class A
 {
 
 };
 
-
+// bool operator==(const vector<2>& lhs,
+//     const vector<2>& rhs)
+// {
+//     return (lhs[0] == rhs[0] && lhs[1] == rhs[1]);
+// };
 
 void Scene1::Start()
 {
@@ -155,11 +160,14 @@ bool Scene1::Update()
     if (Input::Get::Key::Down(0x32))  BGM.Pause();
     if (Input::Get::Key::Down(0x33))  BGM.Stop();
 
-
     Map.Draw();
     Player->Update();
 
     APlayer * player = GetWorld->GetActor<APlayer>();
+
+    
+    
+    
 
     return true;
 }

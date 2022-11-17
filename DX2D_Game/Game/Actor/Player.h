@@ -25,6 +25,7 @@ private :
 public:
     bool bWalked;
     bool bMove;
+    Collision::RectAngle Collision;
 
 private :
     class CInputComponent* InputComponent;
@@ -40,7 +41,8 @@ public :
 private :
     Rendering::Camera                Camera;
 
-    Collision::RectAngle Collision;
+
+    Collision::RectAngle Collisions[128];
 
     void Swap(Rendering::Animation::Component anim);
 

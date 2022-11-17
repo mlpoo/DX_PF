@@ -17,6 +17,7 @@ private :
     
     Rendering::Image::Component     Map;
 
+public:
     Collision::RectAngle Collisions[128];
 };
 
