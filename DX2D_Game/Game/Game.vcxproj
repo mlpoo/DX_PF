@@ -166,11 +166,11 @@
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="AnimClass\PlayerAnim.h" />
     <ClInclude Include="Manager\WorldManager.h" />
+    <ClInclude Include="Scene\MapEditor.h" />
     <ClInclude Include="Scene\Scene1.h" />
     <ClInclude Include="Manager\Game.h" />
     <ClInclude Include="Manager\Scene.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Scene\Scene2.h" />
     <ClInclude Include="Util\IObjectPoolable.h" />
     <ClInclude Include="Util\ObjectPool.h" />
   </ItemGroup>
@@ -179,12 +179,12 @@
     <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Component\InputComponent.cpp" />
     <ClCompile Include="Manager\WorldManager.cpp" />
+    <ClCompile Include="Scene\MapEditor.cpp" />
     <ClCompile Include="Scene\Scene1.cpp" />
     <ClCompile Include="Manager\Game.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Scene\Scene2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

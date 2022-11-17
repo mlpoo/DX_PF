@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Scene/Scene1.h"
-#include "Scene/Scene2.h"
+#include "Scene/MapEditor.h"
 
 #define GetSceneManager SceneManager::GetInstance()
 
@@ -20,7 +20,7 @@ public:
     SceneManager()
     {
         Scenes.try_emplace("Scene1", new Scene1);
-        Scenes.try_emplace("Scene2", new Scene2);
+        Scenes.try_emplace("Scene2", new MapEditor);
 
         Now = "Scene1";
         Scenes.at(Now)->Start();
