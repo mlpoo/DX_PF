@@ -20,7 +20,7 @@ public:
     SceneManager()
     {
         Scenes.try_emplace("Scene1", new Scene1);
-        Scenes.try_emplace("Scene2", new MapEditor);
+        Scenes.try_emplace("MapEditor", new MapEditor);
 
         Now = "Scene1";
         Scenes.at(Now)->Start();

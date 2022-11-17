@@ -11,25 +11,23 @@ class MapEditor final : public Scene
         OT_Scale
     };
 
-public :
+public:
     virtual void Start() override;
     virtual bool Update() override;
     virtual void End() override;
 
-private :
+private:
     std::vector<Rendering::Image::Component> Collisions;
     Rendering::Camera Camera;
-    Rendering::Image::Component     CollisionImage;
 
-
-private :
+private:
     OperationType Type;
 
     float Speed;
     float Value;
     std::string Str;
 
-private :
+private:
     void Print() const;
 
     void Input();
@@ -38,7 +36,6 @@ private :
 
     void Create();
 
-private :
+private:
     __forceinline void SetType(OperationType type) { Type = type; };
-};
-
+}; 

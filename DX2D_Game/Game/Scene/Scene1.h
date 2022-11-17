@@ -4,6 +4,7 @@
 
 class Scene1 : public Scene
 {
+
 public:
     virtual void Start() override;
     virtual bool Update() override;
@@ -14,6 +15,8 @@ private :
 
     Sound::Sound BGM;
     
-    Rendering::Image::Component     Background;
+    Rendering::Image::Component     Map;
+
+    Collision::RectAngle Collisions[128];
 };
 

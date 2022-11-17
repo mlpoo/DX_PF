@@ -11,6 +11,9 @@ APlayer::APlayer()
     Move.Location = { 0, 0 };
     Move.Duration = 1.0f;
 
+    Collision.Length = { 50, 50 };
+    Collision.Location = { Move.Location[0], Move.Location[1] - 50 };
+
     InputComponent = new CInputComponent(this);
 
     bWalked = false;

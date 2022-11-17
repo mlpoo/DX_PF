@@ -1,3 +1,9 @@
-﻿  MapEditor.cpp
+﻿  stdafx.cpp
+  Actor.cpp
+  Player.cpp
+  InputComponent.cpp
+  Game.cpp
+  WorldManager.cpp
+  MapEditor.cpp
   Scene1.cpp
   Game.vcxproj -> C:\Users\Yeon\Desktop\DX_PF\DX2D_Game\.out\Game.exe

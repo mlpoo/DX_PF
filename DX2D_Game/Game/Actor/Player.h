@@ -40,6 +40,8 @@ public :
 private :
     Rendering::Camera                Camera;
 
+    Collision::RectAngle Collision;
+
     void Swap(Rendering::Animation::Component anim);
 
 private :
